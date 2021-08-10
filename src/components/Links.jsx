@@ -18,9 +18,9 @@ function Links() {
 
     const deleteList = (item) => {
         const lists = [...todoItems];
-        let a = lists.indexOf(item);
+        let itemDelete = lists.indexOf(item);
         if(lists.includes(item)) {
-            lists.splice(a, 1);
+            lists.splice(itemDelete, 1);
         }
         dispatch({type: "DELETE_LIST", payload: lists})
     }

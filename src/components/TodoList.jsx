@@ -18,10 +18,8 @@ function TodoList({name, items}) {
     }
 
     const deleteTodo = (item) => {
-        console.log(item);
-        console.log(items.task.indexOf(item));
-        let a = items.task.indexOf(item);
-        items.task.splice(a, 1);
+        let itemDelet = items.task.indexOf(item);
+        items.task.splice(itemDelet, 1);
         dispatch({type: "ADD_TODO", payload: items})
     }
 
