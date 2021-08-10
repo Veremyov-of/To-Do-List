@@ -5,10 +5,23 @@ function TodoList({name, items}) {
     const dispatch = useDispatch();
     const todoItems = useSelector(state => state.mainReducer.todoItems);
 
+    // const addTodo = (text) => {
+    //     if(text !== '') {
+    //         const index = todoItems.indexOf(items);
+    //         todoItems[index].task.push(text);
+    //         const newTodoItem = todoItems[index];
+    //         const item = {
+    //             newTodoItem
+    //         }
+    //         dispatch({type: "ADD_TODO", payload: item})
+    //     }
+    // }
+    
+
     const addTodo = (text) => {
         if(text !== '') {
             const index = todoItems.indexOf(items);
-            todoItems[index].task.push(text);
+            todoItems[index].task.push({text: text, performance: false});
             const newTodoItem = todoItems[index];
             const item = {
                 newTodoItem
@@ -16,13 +29,6 @@ function TodoList({name, items}) {
             dispatch({type: "ADD_TODO", payload: item})
         }
     }
-
-    const deleteTodo = (item) => {
-        let itemDelet = items.task.indexOf(item);
-        items.task.splice(itemDelet, 1);
-        dispatch({type: "ADD_TODO", payload: items})
-    }
-
     const [value, setValue] = useState("");
     const handleClick = e => {
         e.preventDefault();
@@ -30,6 +36,25 @@ function TodoList({name, items}) {
         addTodo(value);
         setValue("");
       };
+
+    const deleteTodo = (item) => {
+        let itemDelet = items.task.indexOf(item);
+        items.task.splice(itemDelet, 1);
+        dispatch({type: "DELETE_TODO", payload: items});
+    }
+
+    const performed = (item) => {
+        const indexMain = todoItems.indexOf(items);
+        const indexItem = items.task.indexOf(item);
+        console.log(todoItems[indexMain].task[indexItem].performance);
+        if(todoItems[indexMain].task[indexItem].performance) {
+            todoItems[indexMain].task[indexItem].performance = false;
+        } else {
+            todoItems[indexMain].task[indexItem].performance = true;
+        }
+        console.log(todoItems[indexMain].task[indexItem].performance);
+        dispatch({type: "PERFORMED_TODO", payload: todoItems})
+    }
 
     return (
         <div>
@@ -39,8 +64,9 @@ function TodoList({name, items}) {
                 <button onClick={handleClick}>add task</button>
             </form>
             {items.task.map((item, index) =>
-                <div key={index}>
-                    {item}
+                <div style={{display: 'flex'}} key={index}>
+                    <div className={item.performance ? 'test' : ''}>{item.text}</div>
+                    <button onClick={() => performed(item)}>performed</button>
                     <button onClick={() => deleteTodo(item)}>delete task</button>
                 </div>
             )}

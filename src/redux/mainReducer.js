@@ -1,12 +1,15 @@
+
 const initialState = {
     todoItems: [
         {
             name: 'work',
-            task: ['buy icecream', 'buy cake', 'buy meet']
+            task: [{ text: 'buy icecream', performance: false },
+            { text: 'buy cake', performance: false},
+            { text: 'buy meet', performance: false }]
         },
         {
             name: 'home',
-            task: ['homework']
+            task: [{ text: 'homework', performance: false }]
         }, 
     ]
 }
@@ -26,6 +29,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 todoItems: action.payload
             }
+
         case "ADD_TODO":
             state = {
                 ...state,
@@ -40,11 +44,38 @@ const reducer = (state = initialState, action) => {
             }
             state.todoItems = newState;
             return state;
+
+            
         case "DELETE_TODO":
-            return {
+            state = {
                 ...state,
-                todoItems: action.payload
+                todoItems: [
+                    ...state.todoItems,
+                    action.payload
+                ]
             }
+            const newStateDelete = []
+            for(let i = 0; i < state.todoItems.length - 1; i++) {
+                newStateDelete.push(state.todoItems[i])
+            }
+            state.todoItems = newStateDelete;
+            return state;
+
+        case "PERFORMED_TODO":
+            state = {
+                ...state,
+                todoItems: [
+                    ...state.todoItems,
+                    action.payload
+                ]
+            }
+            const newStatePerformed = []
+            for(let i = 0; i < state.todoItems.length - 1; i++) {
+                newStatePerformed.push(state.todoItems[i])
+            }
+            state.todoItems = newStatePerformed;
+            return state;
+            
         default:
             return state
     }
