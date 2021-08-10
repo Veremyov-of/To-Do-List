@@ -2,13 +2,13 @@
 const initialState = {
     todoItems: [
         {
-            name: 'work',
+            name: 'Work',
             task: [{ text: 'buy icecream', performance: false },
             { text: 'buy cake', performance: false},
             { text: 'buy meet', performance: false }]
         },
         {
-            name: 'home',
+            name: 'Home',
             task: [{ text: 'homework', performance: false }]
         }, 
     ]

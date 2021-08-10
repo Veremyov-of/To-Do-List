@@ -1,7 +1,305 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
 body {
-  background-color: rgb(245, 181, 236);
+  background-color: #242A2B;
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
 }
 
-.test {
-  color: red;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 5px;
+}
+
+input {
+  outline:none;
+  border: 0;
+  border: none;
+}
+
+input::placeholder {
+  color: #CBCBCB;
+}
+
+
+
+/** End Main Block */
+.container_block {
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 310px;
+  height: 130px;
+  background: #A49D92;
+  border-radius: 10px;
+}
+
+.title {
+  width: 250px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: normal;
+  background: #303A3C;
+  border-radius: 5px;
+}
+
+.form_group {
+  margin-top: 15px;
+}
+
+.input_group {
+  margin-right: 20px;
+  padding: 2px 7px;
+  width: 130px;
+  height: 30px;
+  background: #303A3C;
+  border-radius: 3px;
+  color: #fff;
+}
+
+
+.btn_group {
+  font-size: 16px;
+  width: 100px;
+  height: 30px;
+  background: #303A3C;
+  border-radius: 3px;
+}
+
+.link_block {
+  padding: 15px 0;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 10px;
+  max-width: 400px;
+  min-height: 100px;
+  background: #474F65;
+  border-radius: 10px;
+}
+
+.link {
+  padding: 5px;
+  font-size: 18px;
+  font-weight: normal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 200px;
+  max-width: 300px;
+  min-height: 70px;
+  background: #303A3C;
+  border-radius: 10px;
+}
+
+.link_text {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  word-wrap: break-word;
+}
+
+.delete_link {
+  width: 30px;
+  height: 30px;
+  background: #303A3C;
+  background-image: url('./img/cross.png');
+  background-size: 15px;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 0px 10px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: background-image .2s;
+}
+.delete_link:hover {
+  background-image: url('./img/crossred.png');
+  transition: all .2s;
+}
+.delete_link button {
+  width: 100%;
+  height: 100%;
+}
+/*! End Main Block */
+
+
+/** Start todoList Block */
+.container_todolist {
+  position: relative;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-width: 310px;
+  height: 120px;
+  background: #A49D92;
+  border-radius: 10px;
+}
+
+.home {
+  background: #303A3C;
+  background-image: url('./img/arrow.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 16px 14px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px 0px;
+  transition: background-image .2s;
+}
+
+.home:hover {
+  background-image: url('./img/arrowblue.png');
+  transition: all .2s;
+}
+
+.home_link {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.title_todolist {
+  font-size: 20px;
+  line-height: 40px;
+  text-align: center;
+  font-weight: normal;
+  width: 150px;
+  height: 40px;
+  background: #303A3C;
+  border-radius: 5px;
+}
+
+.form_todolist {
+  margin-top: 10px;
+  position: relative;
+  width: 250px;
+  height: 30px;
+  background-color: #303A3C;
+  border-radius: 5px;
+}
+
+.input_todolist {
+  padding: 5px 10px;
+  color: #fff;
+  background-color: #303A3C;
+  height: 100%;
+  width: 200px;
+  border-radius: 5px;
+}
+
+.btn_todolist {
+  font-size: 18px;
+  position: absolute;
+  top: 3px;
+  right: 10px;
+  width: 35px;
+  height: 23px;
+  background: #444F51;
+  border-radius: 2px;
+  transition: color .2s;
+}
+.btn_todolist:hover {
+  transition: all .2s;
+  color: rgb(121, 211, 184);
+}
+
+.task_block {
+  margin: 0 auto;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin-bottom: 10px;
+  max-width: 400px;
+  min-height: 80px;
+  height: auto;
+  background: #A49D92;
+  border-radius: 10px;
+}
+
+.task_name {
+  word-wrap: break-word;
+  overflow: hidden;
+  padding: 10px 10px;
+  margin: 5px;
+  width: 270px;
+  height: auto;
+  background: #303A3C;
+  border-radius: 7px;
+}
+
+.task_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.task_performed {
+  background-color: #A49D92;
+  width: 25px;
+  height: 25px;
+  border: 2px solid #444F51;
+  border-radius: 2px;
+  margin-bottom: 5px;
+}
+
+.task_delete {
+  background-image: url('./img/delete.png');
+  background-repeat: no-repeat;
+  background-size: 21px 25px;
+  width: 21px;
+  height: 25px;
+  transition: background-image .2s;
+}
+
+.task_delete:hover {
+  background-image: url('./img/deletered.png');
+  transition: background-image .2s;
+}
+
+.active {
+  background-image: url('./img/performed.png');
+  background-size: 15px 15px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+.performed {
+  color: #A49D92;
+  text-decoration: line-through;
 }

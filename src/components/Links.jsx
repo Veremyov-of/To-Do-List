@@ -35,16 +35,19 @@ function Links() {
 
     return (
         <div>
-            <form onSubmit={handleClick}>
-                <input value={value} onChange={e => setValue(e.target.value)} type="text"/>
-                <button onClick={handleClick}>add group</button>
-            </form>
+            <div className="container_block">
+                <h1 className="title">To Do List</h1>
+                <form className="form_group" onSubmit={handleClick}>
+                    <input className="input_group" placeholder='Name Group' value={value} onChange={e => setValue(e.target.value)} type="text"/>
+                    <button className="btn_group" onClick={handleClick}>Add Group</button>
+                </form>
+            </div>
             {todoItems.length > 0 ?
             <div>
                 {todoItems.map((item, index) => 
-                <div key={index}>
-                    <Link  to={`${item.name}`}>{item.name}</Link>
-                    <button onClick={() => deleteList(item)}>delete</button>
+                <div key={index} className="link_block">
+                    <div className="link"><Link className="link_text" to={`${item.name}`}>{item.name}</Link></div>
+                    <div className="delete_link"><button onClick={() => deleteList(item)}></button></div>
                 </div>
                 )}
             </div>

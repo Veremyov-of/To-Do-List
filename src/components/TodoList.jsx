@@ -1,22 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+
 function TodoList({name, items}) {
     const dispatch = useDispatch();
     const todoItems = useSelector(state => state.mainReducer.todoItems);
-
-    // const addTodo = (text) => {
-    //     if(text !== '') {
-    //         const index = todoItems.indexOf(items);
-    //         todoItems[index].task.push(text);
-    //         const newTodoItem = todoItems[index];
-    //         const item = {
-    //             newTodoItem
-    //         }
-    //         dispatch({type: "ADD_TODO", payload: item})
-    //     }
-    // }
-    
 
     const addTodo = (text) => {
         if(text !== '') {
@@ -56,19 +44,23 @@ function TodoList({name, items}) {
 
     return (
         <div>
-            <h1>{name}</h1>
-            <form onSubmit={handleClick}>
-                <input value={value} onChange={e => setValue(e.target.value)} type="text"/>
-                <button onClick={handleClick}>add task</button>
-            </form>
+            <div className="container_todolist">
+                <h1 className="title_todolist">{name}</h1>
+                <form className="form_todolist" onSubmit={handleClick}>
+                    <input className="input_todolist" placeholder="Task" value={value} onChange={e => setValue(e.target.value)} type="text"/>
+                    <button className="btn_todolist" onClick={handleClick}>+</button>
+                </form>
+                <div className="home"><Link className="home_link" to='/'>link</Link></div>
+            </div>
             {items.task.map((item, index) =>
-                <div style={{display: 'flex'}} key={index}>
-                    <div className={item.performance ? 'test' : ''}>{item.text}</div>
-                    <button onClick={() => performed(item)}>performed</button>
-                    <button onClick={() => deleteTodo(item)}>delete task</button>
+                <div className="task_block" key={index}>
+                    <div className={`${item.performance ? 'performed' : ''} task_name`} >{item.text}</div>
+                    <div className="task_btn">
+                        <button className={`task_performed ${item.performance ? 'active' : ''}`} onClick={() => performed(item)}></button>
+                        <button className="task_delete" onClick={() => deleteTodo(item)}></button>
+                    </div>
                 </div>
             )}
-            <div><Link to='/'>Home</Link></div>
         </div>
     );
 }

@@ -14,18 +14,20 @@ import TodoList from "./components/TodoList";
 function App() {
   const lists = useSelector(state => state.mainReducer.todoItems);
   return (
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <Links />
-          </Route>
-          {lists.map((list, index) => 
-            <Route key={index} path={`/${list.name}`}>
-              <TodoList name={list.name} items={list}/>
+      <div className="container">
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <Links />
             </Route>
-          )}
-        </Switch>
-      </Router>
+            {lists.map((list, index) => 
+              <Route key={index} path={`/${list.name}`}>
+                <TodoList name={list.name} items={list}/>
+              </Route>
+            )}
+          </Switch>
+        </Router>
+      </div>
   );
 }
 
