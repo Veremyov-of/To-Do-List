@@ -46,13 +46,11 @@ function TodoList({name, items}) {
     const performed = (item) => {
         const indexMain = todoItems.indexOf(items);
         const indexItem = items.task.indexOf(item);
-        console.log(todoItems[indexMain].task[indexItem].performance);
         if(todoItems[indexMain].task[indexItem].performance) {
             todoItems[indexMain].task[indexItem].performance = false;
         } else {
             todoItems[indexMain].task[indexItem].performance = true;
         }
-        console.log(todoItems[indexMain].task[indexItem].performance);
         dispatch({type: "PERFORMED_TODO", payload: todoItems})
     }
 
