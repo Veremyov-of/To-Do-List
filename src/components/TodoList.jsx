@@ -1,11 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 
 function TodoList({name, items}) {
     const dispatch = useDispatch();
     const todoItems = useSelector(state => state.mainReducer.todoItems);
-
     const addTodo = (text) => {
         if(text !== '') {
             const index = todoItems.indexOf(items);
@@ -41,6 +40,35 @@ function TodoList({name, items}) {
         }
         dispatch({type: "PERFORMED_TODO", payload: todoItems})
     }
+    
+    const percents = useSelector(state => state.todoPercent.percents);
+    const indexItem = todoItems.indexOf(items);
+
+
+    const calcPercent = () => {
+        const sizeTasks = todoItems[indexItem].task.length;
+        const onePercent = 100 / sizeTasks;
+        let madeTasks = 0;
+        for(let i = 0; i < sizeTasks; i++) {
+            // console.log(items.task[i].performance);
+            if(items.task[i].performance) {
+                madeTasks += 1;
+            }
+
+        }
+        if(madeTasks > 0) {
+            const finalPercent = Math.round(madeTasks * onePercent);
+            dispatch({type: "UPDATE_PERCENT", payload: finalPercent})
+        } else {
+            dispatch({type: "ZEROING_PERCENT", payload: 0})
+            
+        }
+    }
+
+    useEffect(() => {
+        calcPercent();
+        console.log(percents);
+    })
 
     return (
         <div>
@@ -49,6 +77,7 @@ function TodoList({name, items}) {
                 <form className="form_todolist" onSubmit={handleClick}>
                     <input className="input_todolist" placeholder="Task" value={value} onChange={e => setValue(e.target.value)} type="text"/>
                     <button className="btn_todolist" onClick={handleClick}>+</button>
+                    <h1>{percents}</h1>
                 </form>
                 <div className="home"><Link className="home_link" to='/'>link</Link></div>
             </div>

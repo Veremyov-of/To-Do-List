@@ -2,10 +2,10 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import logger from "redux-logger";
 import mainReducer from './mainReducer';
-// import todoReducer from './todoReducer';
+import todoPercent from './todoPercent';
 const rootReducer = combineReducers({
     mainReducer,
-    // todoReducer
+    todoPercent
 })
 const store = createStore(rootReducer, applyMiddleware(logger));
 

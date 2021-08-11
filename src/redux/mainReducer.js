@@ -5,7 +5,9 @@ const initialState = {
             name: 'Work',
             task: [{ text: 'buy icecream', performance: false },
             { text: 'buy cake', performance: false},
-            { text: 'buy meet', performance: false }]
+            { text: 'buy meet', performance: false },
+            { text: 'buy chocolate', performance: false },
+            { text: 'buy milk', performance: false }]
         },
         {
             name: 'Home',

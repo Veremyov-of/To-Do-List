@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 function Links() {
     const dispatch = useDispatch();
     const todoItems = useSelector(state => state.mainReducer.todoItems);
-   
+    const percents = useSelector(state => state.todoPercent.percents);
     const addList = (name) => {
         if(name !== '') {
             const item = {
@@ -32,7 +32,6 @@ function Links() {
         addList(value);
         setValue("");
       };
-
     return (
         <div>
             <div className="container_block">
@@ -40,6 +39,7 @@ function Links() {
                 <form className="form_group" onSubmit={handleClick}>
                     <input className="input_group" placeholder='Name Group' value={value} onChange={e => setValue(e.target.value)} type="text"/>
                     <button className="btn_group" onClick={handleClick}>Add Group</button>
+                    <h1>{percents}</h1>
                 </form>
             </div>
             {todoItems.length > 0 ?
@@ -52,8 +52,8 @@ function Links() {
                 )}
             </div>
             :
-            <div>
-                <h2>Сreate a new list</h2>
+            <div className="title_create">
+                <h2>Сreate a new list...</h2>
             </div>
             }
         </div>
