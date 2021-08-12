@@ -1,5 +1,5 @@
 const defaultState = {
-    percents: 0
+    percents: []
 }
 
 const todoPercent = (state = defaultState, action) => {
@@ -14,7 +14,7 @@ const todoPercent = (state = defaultState, action) => {
             return {
                 ...state,
                 percents: action.payload
-            } 
+            }
         default:
             return state
     }

@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 
 function TodoList({name, items}) {
     const dispatch = useDispatch();
     const todoItems = useSelector(state => state.mainReducer.todoItems);
+    const indexItem = todoItems.indexOf(items);
     const addTodo = (text) => {
         if(text !== '') {
             const index = todoItems.indexOf(items);
@@ -14,6 +15,7 @@ function TodoList({name, items}) {
                 newTodoItem
             }
             dispatch({type: "ADD_TODO", payload: item})
+            calcPercent();
         }
     }
     const [value, setValue] = useState("");
@@ -28,6 +30,7 @@ function TodoList({name, items}) {
         let itemDelet = items.task.indexOf(item);
         items.task.splice(itemDelet, 1);
         dispatch({type: "DELETE_TODO", payload: items});
+        calcPercent();
     }
 
     const performed = (item) => {
@@ -39,18 +42,14 @@ function TodoList({name, items}) {
             todoItems[indexMain].task[indexItem].performance = true;
         }
         dispatch({type: "PERFORMED_TODO", payload: todoItems})
+        calcPercent();
     }
     
-    const percents = useSelector(state => state.todoPercent.percents);
-    const indexItem = todoItems.indexOf(items);
-
-
-    const calcPercent = () => {
+     const calcPercent = () => {
         const sizeTasks = todoItems[indexItem].task.length;
         const onePercent = 100 / sizeTasks;
         let madeTasks = 0;
         for(let i = 0; i < sizeTasks; i++) {
-            // console.log(items.task[i].performance);
             if(items.task[i].performance) {
                 madeTasks += 1;
             }
@@ -58,17 +57,17 @@ function TodoList({name, items}) {
         }
         if(madeTasks > 0) {
             const finalPercent = Math.round(madeTasks * onePercent);
-            dispatch({type: "UPDATE_PERCENT", payload: finalPercent})
+            const newState = todoItems;
+            newState[indexItem].percent = finalPercent;
+            dispatch({type: "UPDATE_PERCENT", payload: newState})
         } else {
-            dispatch({type: "ZEROING_PERCENT", payload: 0})
+            const newState = todoItems;
+            newState[indexItem].percent = 0;
+            dispatch({type: "ZEROING_PERCENT", payload: newState})
             
         }
-    }
+    }    
 
-    useEffect(() => {
-        calcPercent();
-        console.log(percents);
-    })
 
     return (
         <div>
@@ -77,7 +76,8 @@ function TodoList({name, items}) {
                 <form className="form_todolist" onSubmit={handleClick}>
                     <input className="input_todolist" placeholder="Task" value={value} onChange={e => setValue(e.target.value)} type="text"/>
                     <button className="btn_todolist" onClick={handleClick}>+</button>
-                    <h1>{percents}</h1>
+                    {/* <h1>{percents}</h1> */}
+                    <h1>{`state ${todoItems[indexItem].percent}`}</h1>
                 </form>
                 <div className="home"><Link className="home_link" to='/'>link</Link></div>
             </div>

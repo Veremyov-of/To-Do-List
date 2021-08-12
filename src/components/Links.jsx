@@ -5,12 +5,12 @@ import React, { useState } from 'react';
 function Links() {
     const dispatch = useDispatch();
     const todoItems = useSelector(state => state.mainReducer.todoItems);
-    const percents = useSelector(state => state.todoPercent.percents);
     const addList = (name) => {
         if(name !== '') {
             const item = {
                 name,
-                task: []
+                task: [],
+                percent: 0
             }
             dispatch({type: "ADD_LIST", payload: item})
         }   
@@ -39,13 +39,13 @@ function Links() {
                 <form className="form_group" onSubmit={handleClick}>
                     <input className="input_group" placeholder='Name Group' value={value} onChange={e => setValue(e.target.value)} type="text"/>
                     <button className="btn_group" onClick={handleClick}>Add Group</button>
-                    <h1>{percents}</h1>
                 </form>
             </div>
             {todoItems.length > 0 ?
             <div>
                 {todoItems.map((item, index) => 
                 <div key={index} className="link_block">
+                    <h1>{item.percent}</h1>
                     <div className="link"><Link className="link_text" to={`${item.name}`}>{item.name}</Link></div>
                     <div className="delete_link"><button onClick={() => deleteList(item)}></button></div>
                 </div>

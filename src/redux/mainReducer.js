@@ -5,13 +5,15 @@ const initialState = {
             name: 'Work',
             task: [{ text: 'buy icecream', performance: false },
             { text: 'buy cake', performance: false},
-            { text: 'buy meet', performance: false },
+            { text: 'buy meet', performance: false},
             { text: 'buy chocolate', performance: false },
-            { text: 'buy milk', performance: false }]
+            { text: 'buy milk', performance: false }],
+            percent: 0
         },
         {
             name: 'Home',
-            task: [{ text: 'homework', performance: false }]
+            task: [{ text: 'homework', performance: false }],
+            percent: 0
         }, 
     ]
 }
@@ -76,6 +78,51 @@ const reducer = (state = initialState, action) => {
                 newStatePerformed.push(state.todoItems[i])
             }
             state.todoItems = newStatePerformed;
+            return state;
+
+        // case "UPDATE_PERCENT":
+        //     return {
+        //         ...state,
+        //         todoItems: [
+        //             ...state.todoItems,
+        //             action.payload
+        //         ]
+        //     }
+        // case "ZEROING_PERCENT":
+        //     return {
+        //         ...state,
+        //         todoItems: [
+        //             ...state.todoItems,
+        //             action.payload
+        //         ]
+        //     }
+        case "UPDATE_PERCENT":
+            state = {
+                ...state,
+                todoItems: [
+                    ...state.todoItems,
+                    action.payload
+                ]
+            }
+            const newStateUpDatePercent = []
+            for(let i = 0; i < state.todoItems.length - 1; i++) {
+                newStateUpDatePercent.push(state.todoItems[i])
+            }
+            state.todoItems = newStateUpDatePercent;
+            return state;
+        case "ZEROING_PERCENT":
+            state = {
+                ...state,
+                todoItems: [
+                    ...state.todoItems,
+                    action.payload
+                ]
+            }
+            const newStateZeroingPercent = []
+            for(let i = 0; i < state.todoItems.length - 1; i++) {
+                newStateZeroingPercent.push(state.todoItems[i])
+            }
+            state.todoItems = newStateZeroingPercent;
             return state;
             
         default:
