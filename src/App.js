@@ -1,6 +1,5 @@
 import {
   BrowserRouter as Router,
-  HashRouter,
   Switch,
   Route
 } from "react-router-dom";
@@ -16,7 +15,7 @@ function App() {
   const lists = useSelector(state => state.mainReducer.todoItems);
   return (
       <div className="container">
-        <HashRouter>
+        <Router>
           <Switch>
             <Route exact path="/">
               <Links />
@@ -27,7 +26,7 @@ function App() {
               </Route>
             )}
           </Switch>
-        </HashRouter>
+        </Router>
       </div>
   );
 }
