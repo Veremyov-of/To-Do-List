@@ -10,7 +10,9 @@ function Links() {
             const item = {
                 name,
                 task: [],
-                percent: 0
+                percent: 0,
+                popUp: false,
+                popUpColor: 'pop-up_color_starting',
             }
             dispatch({type: "ADD_LIST", payload: item})
         }   
@@ -32,6 +34,49 @@ function Links() {
         addList(value);
         setValue("");
       };
+
+
+    const popUp = (item) => {
+        const indexMain = todoItems.indexOf(item);
+        if(todoItems[indexMain].popUp) {
+            todoItems[indexMain].popUp = false;
+        } else {
+            todoItems[indexMain].popUp = true;
+        }
+        dispatch({type: "POP_UP", payload: todoItems})
+    }
+
+    const switchColor = (color, item) => {
+        const indexMain = todoItems.indexOf(item);
+        switch(color) {
+            case 'red':
+                todoItems[indexMain].popUpColor = 'pop-up_color_red';
+                todoItems[indexMain].popUp = false;
+                dispatch({type: "SWITCH_COLOR", payload: todoItems})
+            break;
+            case 'blue':
+                todoItems[indexMain].popUpColor = 'pop-up_color_blue';
+                todoItems[indexMain].popUp = false;
+                dispatch({type: "SWITCH_COLOR", payload: todoItems})
+            break;
+            case 'starting':
+                todoItems[indexMain].popUpColor = 'pop-up_color_starting';
+                todoItems[indexMain].popUp = false;
+                dispatch({type: "SWITCH_COLOR", payload: todoItems})
+            break;
+            case 'green':
+                todoItems[indexMain].popUpColor = 'pop-up_color_green';
+                todoItems[indexMain].popUp = false;
+                dispatch({type: "SWITCH_COLOR", payload: todoItems})
+            break;
+            default:
+                break;
+        }
+            
+
+    }
+    
+
     return (
         <div>
             <div className="container_block">
@@ -44,10 +89,21 @@ function Links() {
             {todoItems.length > 0 ?
             <div>
                 {todoItems.map((item, index) => 
-                <div key={index} className="link_block">
-                    <h1>{item.percent}</h1>
-                    <div className="link"><Link className="link_text" to={`${item.name}`}>{item.name}</Link></div>
+                <div key={index} className="transparent_block">
+                    <div className={`link_block ${item.popUpColor}`}>
+
+                    <button className="button_pop-up" onClick={() => popUp(item)}><div className={`pop-up_color ${item.popUpColor}`}></div></button>
+                    <div className={`pop-up ${todoItems[index].popUp === true ? 'popActive': ''}`}>
+                        <button onClick={() => switchColor('red',item)}><div className="button-pop-up pop-up_color_red"></div></button>
+                        <button onClick={() => switchColor('blue',item)}><div className="button-pop-up pop-up_color_blue"></div></button>
+                        <button onClick={() => switchColor('green',item)}><div className="button-pop-up pop-up_color_green"></div></button>
+                        <button onClick={() => switchColor('starting',item)}><div className="button-pop-up pop-up_color_starting"></div></button>
+                    </div>
+
+                    <Link className="link" to={`${item.name}`}><div className="link_text" >{item.name}</div></Link>
                     <div className="delete_link"><button onClick={() => deleteList(item)}></button></div>
+                    <div className="percent_link">{`${item.percent}%`}</div>
+                </div>
                 </div>
                 )}
             </div>

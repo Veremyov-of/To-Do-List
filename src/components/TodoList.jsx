@@ -53,7 +53,6 @@ function TodoList({name, items}) {
             if(items.task[i].performance) {
                 madeTasks += 1;
             }
-
         }
         if(madeTasks > 0) {
             const finalPercent = Math.round(madeTasks * onePercent);
@@ -64,7 +63,6 @@ function TodoList({name, items}) {
             const newState = todoItems;
             newState[indexItem].percent = 0;
             dispatch({type: "ZEROING_PERCENT", payload: newState})
-            
         }
     }    
 
@@ -72,18 +70,17 @@ function TodoList({name, items}) {
     return (
         <div>
             <div className="container_todolist">
-                <h1 className="title_todolist">{name}</h1>
+                <div className="title_todolist"><h1>{name}</h1></div>
                 <form className="form_todolist" onSubmit={handleClick}>
                     <input className="input_todolist" placeholder="Task" value={value} onChange={e => setValue(e.target.value)} type="text"/>
                     <button className="btn_todolist" onClick={handleClick}>+</button>
-                    {/* <h1>{percents}</h1> */}
-                    <h1>{`state ${todoItems[indexItem].percent}`}</h1>
                 </form>
+                <div className="percent_todo">{`${todoItems[indexItem].percent}%`}</div>
                 <div className="home"><Link className="home_link" to='/'>link</Link></div>
             </div>
             {items.task.map((item, index) =>
-                <div className="task_block" key={index}>
-                    <div className={`${item.performance ? 'performed' : ''} task_name`} >{item.text}</div>
+                <div className={`${item.performance ? 'block_active' : ''} task_block`} key={index}>
+                    <div className={`${item.performance ? 'performed' : ''} task_name`} ><span>{item.text}</span></div>
                     <div className="task_btn">
                         <button className={`task_performed ${item.performance ? 'active' : ''}`} onClick={() => performed(item)}></button>
                         <button className="task_delete" onClick={() => deleteTodo(item)}></button>

@@ -8,12 +8,16 @@ const initialState = {
             { text: 'buy meet', performance: false},
             { text: 'buy chocolate', performance: false },
             { text: 'buy milk', performance: false }],
-            percent: 0
+            percent: 0,
+            popUp: false,
+            popUpColor: 'pop-up_color_starting'
         },
         {
             name: 'Home',
             task: [{ text: 'homework', performance: false }],
-            percent: 0
+            percent: 0,
+            popUp: false,
+            popUpColor: 'pop-up_color_starting'
         }, 
     ]
 }
@@ -42,11 +46,11 @@ const reducer = (state = initialState, action) => {
                     action.payload
                 ]
             }
-            const newState = []
+            const newStateAddTodo = []
             for(let i = 0; i < state.todoItems.length - 1; i++) {
-                newState.push(state.todoItems[i])
+                newStateAddTodo.push(state.todoItems[i])
             }
-            state.todoItems = newState;
+            state.todoItems = newStateAddTodo;
             return state;
 
             
@@ -79,23 +83,6 @@ const reducer = (state = initialState, action) => {
             }
             state.todoItems = newStatePerformed;
             return state;
-
-        // case "UPDATE_PERCENT":
-        //     return {
-        //         ...state,
-        //         todoItems: [
-        //             ...state.todoItems,
-        //             action.payload
-        //         ]
-        //     }
-        // case "ZEROING_PERCENT":
-        //     return {
-        //         ...state,
-        //         todoItems: [
-        //             ...state.todoItems,
-        //             action.payload
-        //         ]
-        //     }
         case "UPDATE_PERCENT":
             state = {
                 ...state,
@@ -123,6 +110,34 @@ const reducer = (state = initialState, action) => {
                 newStateZeroingPercent.push(state.todoItems[i])
             }
             state.todoItems = newStateZeroingPercent;
+            return state;
+        case "POP_UP":
+            state = {
+                ...state,
+                todoItems: [
+                    ...state.todoItems,
+                    action.payload
+                ]
+            }
+            const newStatePopUp = []
+            for(let i = 0; i < state.todoItems.length - 1; i++) {
+                newStatePopUp.push(state.todoItems[i])
+            }
+            state.todoItems = newStatePopUp;
+            return state;
+        case "SWITCH_COLOR":
+            state = {
+                ...state,
+                todoItems: [
+                    ...state.todoItems,
+                    action.payload
+                ]
+            }
+            const newStateSwitchColor = []
+            for(let i = 0; i < state.todoItems.length - 1; i++) {
+                newStateSwitchColor.push(state.todoItems[i])
+            }
+            state.todoItems = newStateSwitchColor;
             return state;
             
         default:
