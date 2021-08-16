@@ -78,15 +78,17 @@ function TodoList({name, items}) {
                 <div className="percent_todo">{`${todoItems[indexItem].percent}%`}</div>
                 <div className="home"><Link className="home_link" to='/'>link</Link></div>
             </div>
-            {items.task.map((item, index) =>
-                <div className={`${item.performance ? 'block_active' : ''} task_block`} key={index}>
-                    <div className={`${item.performance ? 'performed' : ''} task_name`} ><span>{item.text}</span></div>
-                    <div className="task_btn">
-                        <button className={`task_performed ${item.performance ? 'active' : ''}`} onClick={() => performed(item)}></button>
-                        <button className="task_delete" onClick={() => deleteTodo(item)}></button>
+            <div className="container_items">
+                {items.task.map((item, index) =>
+                    <div className={`${item.performance ? 'block_active' : ''} task_block`} key={index}>
+                        <div className={`${item.performance ? 'performed' : ''} task_name`} ><span>{item.text}</span></div>
+                        <div className="task_btn">
+                            <button className={`task_performed ${item.performance ? 'active' : ''}`} onClick={() => performed(item)}></button>
+                            <button className="task_delete" onClick={() => deleteTodo(item)}></button>
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
+            </div>
         </div>
     );
 }

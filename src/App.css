@@ -112,26 +112,26 @@ input::placeholder {
   min-width: 120px
 }
 .transparent_block:hover .link_block {
-  background-color: #6D96FF;
-  transition: background-color .2s;
+  /* background-color: #6D96FF;
+  transition: background-color .2s; */
   transform: scale(0.9);
   transition: all .2s;
 }
 
-.transparent_block:hover .link_text {
+/* .transparent_block:hover .link_text {
   color: #6D96FF;
   transition: color .2s;
-}
+} */
 
-.transparent_block:hover .link {
+/* .transparent_block:hover .link {
   width: 310px;
   transition: width .2s;
-}
-
+} */
+/* 
 .transparent_block:hover .percent_link {
   color:#6D96FF;
   transition: color .2s;
-}
+} */
 
 
 .link_block {
@@ -203,7 +203,7 @@ input::placeholder {
   align-items: center;
   margin-top: 10px;
   width: 60px;
-  border-radius: 5px;
+  border-radius: 3px;
   height: 30px;
   background-color: #303A3C;
   font-size: 18px;
@@ -225,6 +225,14 @@ input::placeholder {
 
 
 /** Start todoList Block */
+.container_items {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+}
+
 .container_todolist {
   margin: 0 auto;
   padding: 25px 0px;
@@ -336,13 +344,14 @@ input::placeholder {
 }
 
 .task_block {
-  margin: 0 auto;
+  /* margin: 0 auto; */
   padding: 10px;
   justify-content: center;
   align-items: center;
   display: flex;
   margin-bottom: 10px;
-  max-width: 600px;
+ 
+  width: 100%;
   min-height: 100px;
   height: auto;
   background: var(--main-color);
@@ -426,6 +435,7 @@ input::placeholder {
   opacity: 0;
   background-color: #303A3C;
   position: absolute;
+  z-index: 100;
   top: -3px;
   left: 20px;
   display: flex;
@@ -464,6 +474,7 @@ input::placeholder {
 
 .pop-up_color {
   border-radius: 50%;
+
   width: 15px;
   height: 15px;
 }

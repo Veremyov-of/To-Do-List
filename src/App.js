@@ -15,7 +15,7 @@ function App() {
   const lists = useSelector(state => state.mainReducer.todoItems);
   return (
       <div className="container">
-        <Router>
+        <Router basename="/To-Do-List">
           <Switch>
             <Route exact path="/">
               <Links />
