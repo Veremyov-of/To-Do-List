@@ -31,6 +31,11 @@ button {
   cursor: pointer;
 }
 
+button:focus {
+  border: none;
+  outline: none;
+}
+
 .container {
   max-width: 600px;
   margin: 0 auto;
