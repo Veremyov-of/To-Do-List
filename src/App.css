@@ -281,6 +281,37 @@ input::placeholder {
   height: 100%;
 }
 
+.inner_todo {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.percent_todo {
+  margin-right: 5px;
+  font-family: 'Roboto', sans-serif;
+  width: 60px;
+  height: 30px;
+  font-size: 20px;
+  font-weight: 400;
+  background-color: #303A3C;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete_everything {
+  transition: color .2s;
+  border-radius: 3px;
+  width: 150px;
+  height: 30px;
+  background-color: #303A3C;
+}
+.delete_everything:hover {
+  transition: color .2s;
+  color: #FF6D6D;
+}
 .title_todolist {
   margin-top: 10px;
   text-align: center;
@@ -333,20 +364,7 @@ input::placeholder {
   color: rgb(121, 211, 184);
 }
 
-.percent_todo {
-  margin: 0 auto;
-  margin-top: 8px;
-  font-family: 'Roboto', sans-serif;
-  width: 60px;
-  height: 30px;
-  font-size: 20px;
-  font-weight: 400;
-  background-color: #303A3C;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 
 .task_block {
   /* margin: 0 auto; */

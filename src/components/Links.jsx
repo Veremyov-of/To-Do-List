@@ -82,7 +82,7 @@ function Links() {
             <div className="container_block">
                 <h1 className="title">To Do List</h1>
                 <form className="form_group" onSubmit={handleClick}>
-                    <input className="input_group" placeholder='Name Group' value={value} onChange={e => setValue(e.target.value)} type="text"/>
+                    <input className="input_group" maxLength="30" placeholder='Name Group' value={value} onChange={e => setValue(e.target.value)} type="text"/>
                     <button className="btn_group" onClick={handleClick}>Add Group</button>
                 </form>
             </div>

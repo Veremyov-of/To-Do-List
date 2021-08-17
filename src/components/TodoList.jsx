@@ -14,7 +14,7 @@ function TodoList({name, items}) {
             const item = {
                 newTodoItem
             }
-            dispatch({type: "ADD_TODO", payload: item})
+            dispatch({type: "ADD_TODO", payload: item});
             calcPercent();
         }
     }
@@ -41,7 +41,7 @@ function TodoList({name, items}) {
         } else {
             todoItems[indexMain].task[indexItem].performance = true;
         }
-        dispatch({type: "PERFORMED_TODO", payload: todoItems})
+        dispatch({type: "PERFORMED_TODO", payload: todoItems});
         calcPercent();
     }
     
@@ -58,13 +58,19 @@ function TodoList({name, items}) {
             const finalPercent = Math.round(madeTasks * onePercent);
             const newState = todoItems;
             newState[indexItem].percent = finalPercent;
-            dispatch({type: "UPDATE_PERCENT", payload: newState})
+            dispatch({type: "UPDATE_PERCENT", payload: newState});
         } else {
             const newState = todoItems;
             newState[indexItem].percent = 0;
-            dispatch({type: "ZEROING_PERCENT", payload: newState})
+            dispatch({type: "ZEROING_PERCENT", payload: newState});
         }
-    }    
+    }
+    
+    const deleteEverything = () => {
+        todoItems[indexItem].task = [];
+        dispatch({type: "ZEROING_PERCENT", payload: todoItems});
+        calcPercent();
+    }
 
 
     return (
@@ -72,10 +78,13 @@ function TodoList({name, items}) {
             <div className="container_todolist">
                 <div className="title_todolist"><h1>{name}</h1></div>
                 <form className="form_todolist" onSubmit={handleClick}>
-                    <input className="input_todolist" placeholder="Task" value={value} onChange={e => setValue(e.target.value)} type="text"/>
+                    <input className="input_todolist" maxLength="30" placeholder="Task" value={value} onChange={e => setValue(e.target.value)} type="text"/>
                     <button className="btn_todolist" onClick={handleClick}>+</button>
                 </form>
-                <div className="percent_todo">{`${todoItems[indexItem].percent}%`}</div>
+                <div className="inner_todo">
+                    <div className="percent_todo">{`${todoItems[indexItem].percent}%`}</div>
+                    <button onClick={deleteEverything} className="delete_everything">Delete Everything</button>
+                </div>
                 <div className="home"><Link className="home_link" to='/'>link</Link></div>
             </div>
             <div className="container_items">

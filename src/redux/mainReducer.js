@@ -139,7 +139,20 @@ const reducer = (state = initialState, action) => {
             }
             state.todoItems = newStateSwitchColor;
             return state;
-            
+        case "DELETE_EVERYTHING":
+            state = {
+                ...state,
+                todoItems: [
+                    ...state.todoItems,
+                    action.payload
+                ]
+            }
+            const newStateDeleteEverything = []
+            for(let i = 0; i < state.todoItems.length - 1; i++) {
+                newStateDeleteEverything.push(state.todoItems[i])
+            }
+            state.todoItems = newStateDeleteEverything;
+            return state;
         default:
             return state
     }
