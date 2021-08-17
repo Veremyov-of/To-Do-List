@@ -78,7 +78,7 @@ function TodoList({name, items}) {
             <div className="container_todolist">
                 <div className="title_todolist"><h1>{name}</h1></div>
                 <form className="form_todolist" onSubmit={handleClick}>
-                    <input className="input_todolist" maxLength="30" placeholder="Task" value={value} onChange={e => setValue(e.target.value)} type="text"/>
+                    <input className="input_todolist" maxLength="30" placeholder="Task" title="max 30 chars" value={value} onChange={e => setValue(e.target.value)} type="text"/>
                     <button className="btn_todolist" onClick={handleClick}>+</button>
                 </form>
                 <div className="inner_todo">
