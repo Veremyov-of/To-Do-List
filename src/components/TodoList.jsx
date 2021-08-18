@@ -92,7 +92,7 @@ function TodoList({name, items}) {
                     <div className={`${item.performance ? 'block_active' : ''} task_block`} key={index}>
                         <div className={`${item.performance ? 'performed' : ''} task_name`} ><span>{item.text}</span></div>
                         <div className="task_btn">
-                            <button className={`task_performed ${item.performance ? 'active' : ''}`} onClick={() => performed(item)}></button>
+                            <button className={`${item.performance ? 'active' : ''} task_performed`} onClick={() => performed(item)}></button>
                             <button className="task_delete" onClick={() => deleteTodo(item)}></button>
                         </div>
                     </div>

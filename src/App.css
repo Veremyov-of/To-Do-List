@@ -32,7 +32,7 @@ button {
 }
 
 button:focus {
-  border: none;
+  /* border: none; */
   outline: none;
 }
 
@@ -420,6 +420,12 @@ input::placeholder {
   margin-bottom: 5px;
 }
 
+.active {
+  background-image: url('./img/performed.png');
+  background-size: 15px 15px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 .task_delete {
   background-image: url('./img/delete.png');
   background-repeat: no-repeat;
@@ -434,12 +440,7 @@ input::placeholder {
   transition: background-image .2s;
 }
 
-.active {
-  background-image: url('./img/performed.png');
-  background-size: 15px 15px;
-  background-position: center;
-  background-repeat: no-repeat;
-}
+
 
 
 .performed {
