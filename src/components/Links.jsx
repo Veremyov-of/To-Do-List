@@ -13,6 +13,7 @@ function Links() {
                 percent: 0,
                 popUp: false,
                 popUpColor: 'pop-up_color_starting',
+                sorting: false,
             }
             dispatch({type: "ADD_LIST", payload: item})
         }   
@@ -82,7 +83,7 @@ function Links() {
             <div className="container_block">
                 <h1 className="title">To Do List</h1>
                 <form className="form_group" onSubmit={handleClick}>
-                    <input className="input_group" maxLength="30" placeholder='Name Group' value={value} onChange={e => setValue(e.target.value)} type="text"/>
+                    <input className="input_group" maxLength="30" title="max 30 chars" placeholder='Name Group' value={value} onChange={e => setValue(e.target.value)} type="text"/>
                     <button className="btn_group" onClick={handleClick}>Add Group</button>
                 </form>
             </div>

@@ -73,6 +73,16 @@ function TodoList({name, items}) {
     }
 
 
+    const sortingTodos = () => {
+        if(todoItems[indexItem].sorting) {
+            todoItems[indexItem].sorting = false;
+        } else {
+            todoItems[indexItem].sorting = true;
+        }
+        dispatch({type: "SORTING", payload: todoItems});
+    }
+
+
     return (
         <div>
             <div className="container_todolist">
@@ -84,10 +94,11 @@ function TodoList({name, items}) {
                 <div className="inner_todo">
                     <div className="percent_todo">{`${todoItems[indexItem].percent}%`}</div>
                     <button onClick={deleteEverything} className="delete_everything">Delete Everything</button>
+                    <button className={`sorting ${todoItems[indexItem].sorting ? 'sorting_active' : ''}`} onClick={sortingTodos}></button>
                 </div>
                 <div className="home"><Link className="home_link" to='/'>link</Link></div>
             </div>
-            <div className="container_items">
+            <div className={`container_items ${todoItems[indexItem].sorting ? 'container_items_active' : ''}`}>
                 {items.task.map((item, index) =>
                     <div className={`${item.performance ? 'block_active' : ''} task_block`} key={index}>
                         <div className={`${item.performance ? 'performed' : ''} task_name`} ><span>{item.text}</span></div>

@@ -10,14 +10,16 @@ const initialState = {
             { text: 'buy milk', performance: false }],
             percent: 0,
             popUp: false,
-            popUpColor: 'pop-up_color_starting'
+            popUpColor: 'pop-up_color_starting',
+            sorting: false,
         },
         {
             name: 'Home',
             task: [{ text: 'homework', performance: false }],
             percent: 0,
             popUp: false,
-            popUpColor: 'pop-up_color_starting'
+            popUpColor: 'pop-up_color_starting',
+            sorting: false,
         }, 
     ]
 }
@@ -152,6 +154,20 @@ const reducer = (state = initialState, action) => {
                 newStateDeleteEverything.push(state.todoItems[i])
             }
             state.todoItems = newStateDeleteEverything;
+            return state;
+        case "SORTING":
+            state = {
+                ...state,
+                todoItems: [
+                    ...state.todoItems,
+                    action.payload
+                ]
+            }
+            const newStateSorting = []
+            for(let i = 0; i < state.todoItems.length - 1; i++) {
+                newStateSorting.push(state.todoItems[i])
+            }
+            state.todoItems = newStateSorting;
             return state;
         default:
             return state
