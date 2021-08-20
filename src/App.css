@@ -271,6 +271,8 @@ input::placeholder {
 }
 
 .inner_todo {
+  width: 300px;
+  flex-wrap: wrap;
   margin-top: 8px;
   display: flex;
   align-items: center;
@@ -278,6 +280,7 @@ input::placeholder {
 }
 .percent_todo {
   margin-right: 5px;
+  margin-top: 5px;
   font-family: 'Roboto', sans-serif;
   width: 60px;
   height: 30px;
@@ -291,13 +294,14 @@ input::placeholder {
 }
 
 .sorting {
+  margin-top: 5px;
   background-color: #303A3C;
   background-image: url("./img/sorting.svg");
   background-position: center;
   background-size: 20px 20px;
   background-repeat: no-repeat;
   border-radius: 3px;
-  width: 50px;
+  width: 60px;
   height: 30px;
 }
 .sorting_active {
@@ -305,10 +309,10 @@ input::placeholder {
 }
 
 .delete_everything {
-  margin-right: 5px;
   transition: color .2s;
+  margin: 0 5px;
   border-radius: 3px;
-  width: 150px;
+  width: 140px;
   height: 30px;
   background-color: #303A3C;
 }

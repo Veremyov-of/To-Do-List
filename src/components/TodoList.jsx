@@ -66,11 +66,23 @@ function TodoList({name, items}) {
         }
     }
     
-    const deleteEverything = () => {
+    const clearList = () => {
         todoItems[indexItem].task = [];
         dispatch({type: "ZEROING_PERCENT", payload: todoItems});
         calcPercent();
     }
+
+    const clearCompleted = () => {
+        let indexTask = [];
+        for(let i = 0; i < todoItems[indexItem].task.length; i++){
+            if(!todoItems[indexItem].task[i].performance) {
+                indexTask.push(todoItems[indexItem].task[i]);
+            }
+        }
+        todoItems[indexItem].task = indexTask;
+        dispatch({type: "ZEROING_PERCENT", payload: todoItems});
+    }
+
 
 
     const sortingTodos = () => {
@@ -92,8 +104,9 @@ function TodoList({name, items}) {
                     <button className="btn_todolist" onClick={handleClick}>+</button>
                 </form>
                 <div className="inner_todo">
+                    <button onClick={clearList} className="delete_everything">Clear List</button>
+                    <button onClick={clearCompleted} className="delete_everything">Clear Completed</button>
                     <div className="percent_todo">{`${todoItems[indexItem].percent}%`}</div>
-                    <button onClick={deleteEverything} className="delete_everything">Delete Everything</button>
                     <button className={`sorting ${todoItems[indexItem].sorting ? 'sorting_active' : ''}`} onClick={sortingTodos}></button>
                 </div>
                 <div className="home"><Link className="home_link" to='/'>link</Link></div>
