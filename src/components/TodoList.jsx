@@ -81,6 +81,7 @@ function TodoList({name, items}) {
         }
         todoItems[indexItem].task = indexTask;
         dispatch({type: "ZEROING_PERCENT", payload: todoItems});
+        calcPercent();
     }
 
 
