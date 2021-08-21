@@ -92,6 +92,7 @@ function TodoList({name, items}) {
             todoItems[indexItem].sorting = true;
         }
         dispatch({type: "SORTING", payload: todoItems});
+        calcPercent();
     }
 
 
