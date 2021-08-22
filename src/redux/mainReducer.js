@@ -171,6 +171,21 @@ const reducer = (state = initialState, action) => {
             }
             state.todoItems = newStateSorting;
             return state;
+
+        case "UPDATE":
+            state = {
+                ...state,
+                todoItems: [
+                    ...state.todoItems,
+                    action.payload
+                ]
+            }
+            const newStateUpdate = []
+            for(let i = 0; i < state.todoItems.length - 1; i++) {
+                newStateUpdate.push(state.todoItems[i])
+            }
+            state.todoItems = newStateUpdate;
+            return state;
         default:
             return state
     }

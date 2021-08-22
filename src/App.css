@@ -253,13 +253,15 @@ input::placeholder {
   position: relative;
   max-width: 600px;
   margin: 0 auto;
-  height: 30px;
+  height: auto;
   background-color: var(--main-color);
   border-radius: 10px 10px 0 0;
   margin-bottom: 15px;
 }
 .hide_menu_active {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hideActive {
@@ -291,11 +293,25 @@ input::placeholder {
   height: 15px;
 }
 
+.hide_clear {
+  /* margin: 0 30px; */
+  width: 150px;
+  height: 30px;
+  background-color: #303A3C;
+  transition: color .2s;
+}
+
+.hide_clear:hover {
+  transition: color .2s;
+  color: #FF6D6D;
+}
+
 .hide_percent {
+  font-family: 'Roboto', sans-serif;
+  margin: 0 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
   width: 80px;
   height: 30px;
   background-color: #303A3C;
@@ -313,12 +329,12 @@ input::placeholder {
   width: 30px;
   height: 30px;
   border-radius: 25% 0px;
-  transition: background-image .2s;
+  transition: color .2s;
 }
 
 .home:hover {
-  background-image: url('./img/arrowblue.png');
-  transition: all .2s;
+  background-color: #6D96FF;
+  transition: color .2s;
 }
 
 .home_link {
@@ -343,7 +359,6 @@ input::placeholder {
   height: 30px;
   font-size: 16px;
   font-weight: 400;
-  background-color: #303A3C;
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -384,6 +399,7 @@ input::placeholder {
 }
 
 .hide {
+  margin-top: 5px;
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -610,6 +626,34 @@ input::placeholder {
   background-color: #47ec94;
 }
 
+@media (max-width: 630px) {
+  .hide_percent {
+    width: 60px;
+    margin: 0 10px;
+  }
+  .hide_clear {
+    width: 120px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 500px) {
+  .hide_percent {
+    width: 50px;
+    margin: 0 5px;
+  }
+  .hide_clear {
+    width: 120px;
+    font-size: 13px;
+  }
+  
+}
+
+@media (max-width: 470px) {
+  .hide_clear {
+    display: none;
+  }
+}
 
 @media (max-width: 450px) {
   .link {
@@ -625,9 +669,6 @@ input::placeholder {
 }
 
 @media (max-width: 400px) {
-  .transparent_block:hover .link {
-    width: 230px;
-  }
   .title_todolist {
     width: 240px;
   }

@@ -71,7 +71,7 @@ function TodoList({name, items}) {
     
     const clearList = () => {
         todoItems[indexItem].task = [];
-        dispatch({type: "ZEROING_PERCENT", payload: todoItems});
+        dispatch({type: "UPDATE", payload: todoItems});
         calcPercent();
     }
 
@@ -83,7 +83,7 @@ function TodoList({name, items}) {
             }
         }
         todoItems[indexItem].task = indexTask;
-        dispatch({type: "ZEROING_PERCENT", payload: todoItems});
+        dispatch({type: "UPDATE", payload: todoItems});
         calcPercent();
     }
 
@@ -103,7 +103,7 @@ function TodoList({name, items}) {
         } else {
             todoItems[indexItem].hide = true;
         }
-        dispatch({type: "SORTING", payload: todoItems});
+        dispatch({type: "UPDATE", payload: todoItems});
     }
 
 
@@ -111,7 +111,9 @@ function TodoList({name, items}) {
         <div>
             <div className={`hide_menu ${todoItems[indexItem].hide ? 'hide_menu_active' : ''}`}>
                 <div className="home"><Link className="home_link" to='/'>link</Link></div>
+                <button onClick={clearList} className="hide_clear">Clear List</button>
                 <div className="hide_percent">{`${todoItems[indexItem].percent}%`}</div>
+                <button onClick={clearCompleted} className="hide_clear">Clear Completed</button>
                 <button onClick={hideToggle} className="hideActive"><img className="hide_imgActive" src={imgHideActive}/></button>
             </div>
             <div className={`container_todolist ${todoItems[indexItem].hide ? 'container_todolist_hide' : ''}`}>
@@ -123,7 +125,15 @@ function TodoList({name, items}) {
                 <div className="inner_todo">
                     <button onClick={clearList} className="delete_everything">Clear List</button>
                     <button onClick={clearCompleted} className="delete_everything">Clear Completed</button>
-                    <div className="percent_todo">{`${todoItems[indexItem].percent}%`}</div>
+                    <div className="percent_todo"
+                        style={todoItems[indexItem].percent === 0 ? {background: '#ff6d6d9b'} :
+                        todoItems[indexItem].percent >= 80 ? {background: '#bbff6d9b'} :
+                        todoItems[indexItem].percent >= 50 ? {background: '#e9ff6d9b'} :
+                        todoItems[indexItem].percent >= 20 ? {background: '#ffd86d9b'}  : ''
+                    }
+                    >
+                            {`${todoItems[indexItem].percent}%`}
+                    </div>
                     <button className={`sorting ${todoItems[indexItem].sorting ? 'sorting_active' : ''}`} onClick={sortingTodos}></button>
                     <button className="hide" onClick={hideToggle}><img className="hide_img" src={imgHide}/></button>
                 </div>
