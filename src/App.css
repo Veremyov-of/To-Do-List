@@ -244,6 +244,63 @@ input::placeholder {
   border-radius: 10px;
 }
 
+.container_todolist_hide {
+  display: none;
+}
+
+.hide_menu {
+  display: none;
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+  height: 30px;
+  background-color: var(--main-color);
+  border-radius: 10px 10px 0 0;
+  margin-bottom: 15px;
+}
+.hide_menu_active {
+  display: block;
+}
+
+.hideActive {
+  background-color: #303A3C;
+  /* background-image: url('./img/hide.png'); */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 16px 14px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 0 25%;
+  transition: background-image .2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color .2s;
+}
+
+.hideActive:hover {
+  background-color: #6D96FF;
+  transition: all .2s;
+}
+
+.hide_imgActive {
+  width: 20px;
+  height: 15px;
+}
+
+.hide_percent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 80px;
+  height: 30px;
+  background-color: #303A3C;
+}
+
 .home {
   background: #303A3C;
   background-image: url('./img/arrow.png');
@@ -303,6 +360,12 @@ input::placeholder {
   border-radius: 3px;
   width: 60px;
   height: 30px;
+  transition: background-color .2s;
+}
+
+.sorting:hover {
+  background-color: #6D96FF;
+  transition: all .2s;
 }
 .sorting_active {
   background-image: url("./img/sortingEnd.svg");
@@ -319,6 +382,26 @@ input::placeholder {
   transition: color .2s;
   color: #FF6D6D;
 }
+
+.hide {
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 30px;
+  background-color: #303A3C;
+  transition: background-color .2s;
+}
+.hide:hover {
+  background-color: #6D96FF;
+  transition: all .2s;
+}
+.hide_img {
+  width: 20px;
+  height: 19.31px;
+}
+
 .title_todolist {
   margin-top: 10px;
   text-align: center;
@@ -528,13 +611,20 @@ input::placeholder {
 }
 
 
-
-@media (max-width: 400px) {
+@media (max-width: 450px) {
   .link {
-    width: 200px;
+    margin-top: 15px;
+    width: 250px;
     min-height: 60px;
     font-size: 20px;
   }
+  .transparent_block:hover .link_block {
+    transform: scale(1);
+    transition: all .2s;
+  }
+}
+
+@media (max-width: 400px) {
   .transparent_block:hover .link {
     width: 230px;
   }

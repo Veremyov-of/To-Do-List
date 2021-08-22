@@ -14,6 +14,7 @@ function Links() {
                 popUp: false,
                 popUpColor: 'pop-up_color_starting',
                 sorting: false,
+                hide: false,
             }
             dispatch({type: "ADD_LIST", payload: item})
         }   

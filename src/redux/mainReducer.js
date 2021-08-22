@@ -12,6 +12,7 @@ const initialState = {
             popUp: false,
             popUpColor: 'pop-up_color_starting',
             sorting: false,
+            hide: false
         },
         {
             name: 'Home',
@@ -20,6 +21,7 @@ const initialState = {
             popUp: false,
             popUpColor: 'pop-up_color_starting',
             sorting: false,
+            hide: false
         }, 
     ]
 }

@@ -2,6 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 
+import imgHide from "../img/hide.png";
+import imgHideActive from "../img/hideActive.png";
+
 function TodoList({name, items}) {
     const dispatch = useDispatch();
     const todoItems = useSelector(state => state.mainReducer.todoItems);
@@ -84,8 +87,6 @@ function TodoList({name, items}) {
         calcPercent();
     }
 
-
-
     const sortingTodos = () => {
         if(todoItems[indexItem].sorting) {
             todoItems[indexItem].sorting = false;
@@ -95,11 +96,25 @@ function TodoList({name, items}) {
         dispatch({type: "SORTING", payload: todoItems});
         calcPercent();
     }
+    
+    const hideToggle = () => {
+        if(todoItems[indexItem].hide) {
+            todoItems[indexItem].hide = false;
+        } else {
+            todoItems[indexItem].hide = true;
+        }
+        dispatch({type: "SORTING", payload: todoItems});
+    }
 
 
     return (
         <div>
-            <div className="container_todolist">
+            <div className={`hide_menu ${todoItems[indexItem].hide ? 'hide_menu_active' : ''}`}>
+                <div className="home"><Link className="home_link" to='/'>link</Link></div>
+                <div className="hide_percent">{`${todoItems[indexItem].percent}%`}</div>
+                <button onClick={hideToggle} className="hideActive"><img className="hide_imgActive" src={imgHideActive}/></button>
+            </div>
+            <div className={`container_todolist ${todoItems[indexItem].hide ? 'container_todolist_hide' : ''}`}>
                 <div className="title_todolist"><h1>{name}</h1></div>
                 <form className="form_todolist" onSubmit={handleClick}>
                     <input className="input_todolist" maxLength="30" placeholder="Task" title="max 30 chars" value={value} onChange={e => setValue(e.target.value)} type="text"/>
@@ -110,6 +125,7 @@ function TodoList({name, items}) {
                     <button onClick={clearCompleted} className="delete_everything">Clear Completed</button>
                     <div className="percent_todo">{`${todoItems[indexItem].percent}%`}</div>
                     <button className={`sorting ${todoItems[indexItem].sorting ? 'sorting_active' : ''}`} onClick={sortingTodos}></button>
+                    <button className="hide" onClick={hideToggle}><img className="hide_img" src={imgHide}/></button>
                 </div>
                 <div className="home"><Link className="home_link" to='/'>link</Link></div>
             </div>
